@@ -1,0 +1,346 @@
+<!-- NAVBAR -->
+<mat-toolbar color="primary" class="navbar-custom">
+  <span class="logo">
+    <span class="dot"></span> Portfolio
+  </span>
+
+  <span class="spacer"></span>
+
+  <!-- Large screen links -->
+  <ng-container *ngIf="!isMobile">
+    <a mat-button *ngFor="let item of navLinks" [href]="item.link">{{ item.label }}</a>
+  </ng-container>
+
+  <!-- Mobile menu button -->
+  <ng-container *ngIf="isMobile">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item *ngFor="let item of navLinks" [href]="item.link">
+        {{ item.label }}
+      </a>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
+
+
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- LEFT -->
+      <div class="col-md-6">
+        <h1 class="hero-title">
+          MY NAME IS <br />
+          <span>PRATIBHA HAJARE</span>
+        </h1>
+
+        <h5 class="hero-subtitle">
+          A PROFESSIONAL SOFTWARE ENGINEER | MANUAL TESTER
+        </h5>
+
+        <div class="mt-4">
+          <button mat-raised-button class="me-3" style="background-color: #3f3d3c;color: aliceblue;border-radius: 5px;">
+
+            <a href="https://www.naukri.com/mnjuser/profile" target="_blank">
+              <i class="fa fa-briefcase me-1"></i>
+            </a> Hire Me
+          </button>
+
+
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-md-6 text-center mt-5">
+        <img src="assets/pratibhasimg.png" class="hero-img" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="container">
+    <mat-card class="about-card">
+      <div class="row align-items-center">
+
+        <div class="col-md-4 text-center">
+          <img src="assets/pratiimg.png" class="about-img" />
+        </div>
+
+        <div class="col-md-8 text-white">
+          <h2>ABOUT ME</h2>
+          <p>
+            Welcome to My Profile. My name is Pratibha Hajare, and I am from Aurangabad Maharashtra.I have completed my
+            Diploma in Computer Science and Engineering from MSBTE and after I have completed my
+            undergraduate degree in computer Science engineering at the International Centre of Excellence in
+            Engineering and Management, Chhatrapati Sambhajinagar,Maharashtra. My interests include Fullstack Web
+            Develpment & Software Developer aslo manual tester.
+
+
+          </p>
+          <p>
+            I am passionate about web development and have completed an academic project focused on creating a web
+            platform, which gave me hands-on experience with HTML, CSS, JavaScript, and backend
+            technologies. to enhanced my skills in building cross-platform applications. I am someone who learns quickly
+            and works hard.
+            I applied for this job because it aligns with my qualifications and skills, and I am eager to contribute to
+            your team and grow as a web developer.
+          </p>
+
+          <div class="social-icons mt-3">
+
+            <a href="https://www.linkedin.com/in/pratibha-h-824914227" target="_blank">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/pratibhahajare27" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="https://www.naukri.com/mnjuser/profile" target="_blank">
+              <i class="fa fa-briefcase me-1"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-card>
+  </div>
+</section>
+
+
+<!-- SERVICE SECTION -->
+<section class="service-section" id="service">
+  <div class="service-header">
+    <h2 class="text-center fw-bold mb-2">MY SKILLS</h2>
+    <div class="service-divider">
+      <span></span>
+
+      <span></span>
+    </div>
+  </div>
+
+  <div class="service-cards">
+    <!-- Loop through services array -->
+    <mat-card *ngFor="let service of services" class="service-card"
+      [ngClass]="{'active': service.title === 'Responsive Design'}">
+      <mat-icon>{{ service.icon }}</mat-icon>
+      <h3>{{ service.title }}</h3>
+      <p>{{ service.description }}</p>
+    </mat-card>
+  </div>
+</section>
+
+<!-- PROJECT SECTION -->
+<section class="projects-section" id="projects">
+  <h2 class="section-title" style="text-align: center;">Projects</h2>
+  <p style="text-align: center; color: #555;margin:50px;">My approach to web development combines technical proficiency
+    with a keen eye for design and user experience. I am
+    adept at collaborating with cross-functional teams and possess strong problem-solving skills that allow me to tackle
+    challenges efficiently. I am also committed to staying updated with the latest industry trends and technologies to
+    ensure that my work is always at the forefront of innovation.</p>
+  <div class="projects-grid">
+    <mat-card class="project-card" *ngFor="let project of projects">
+
+      <div class="image-wrapper">
+        <img [src]="project.image" [alt]="project.title">
+
+        <!-- Hover Overlay -->
+        <div class="overlay">
+          <p>{{ project.title }}</p>
+          <button mat-raised-button color="accent" (click)="openDialog(project)">
+            View Screenshots
+          </button>
+        </div>
+      </div>
+
+      <mat-card-content>
+        <span class="project-type">{{ project.type }}</span>
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.desc }}</p>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</section>
+
+<ng-template #projectDialog>
+  <h2 mat-dialog-title>{{ selectedProject?.title }}</h2>
+
+  <mat-dialog-content class="dialog-content">
+    <img *ngFor="let img of selectedProject?.screenshots" [src]="img" class="screenshot" />
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-template>
+
+
+<!-- TIMELINE SECTION -->
+<section id="timeline" class="container my-5">
+
+  <h2 class="text-center fw-bold mb-2"> EDUCATION</h2>
+  <p style="text-align: center; color: #555;margin:50px;">Starting with my Secondary School
+    Certificate (SSC), where I laid the
+    foundation in
+    Starting with my Secondary School Certificate (SSC), I built a strong foundation in core subjects. I then pursued a
+    Diploma, where I gained practical, hands-on technical knowledge and developed problem-solving skills in my field of
+    interest.This academic journey continued with a Bachelor of Engineering (BE) in Computer Science, where I engaged
+    in in-depth studies, real-world projects, and practical applications that significantly shaped my professional and
+    personal growth. Throughout this journey, I embraced challenges, strengthened my technical expertise, and prepared
+    myself for a future of continuous learning and innovation in technology.</p>
+  <div class="row g-4">
+
+    <div class="col-md-6" *ngFor="let item of timeline; let i = index">
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ item.title }}</mat-card-title>
+          <mat-card-subtitle>{{ item.year }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{ item.desc }}</p>
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section my-5" id="contact">
+  <h2 class="section-title" style="text-align: center;">CONTACT</h2>
+  <p style="text-align: center; color: #555; ">I’d love to hear from you! Whether you have questions, collaboration
+    opportunities,<br>
+    or just want to connect,
+    feel
+    free to reach out.</p>
+  <div class="contact-wrapper">
+
+    <!-- LEFT CARD : CONTACT FORM -->
+    <mat-card class="contact-card">
+      <mat-card-content>
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+
+          <!-- Full Name -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            <input matInput name="name" ngModel required #name="ngModel">
+            <mat-error *ngIf="name.invalid && name.touched" style="color: red;">
+              Full Name is required
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" ngModel required #email="ngModel">
+            <mat-error *ngIf="email.invalid && email.touched" style="color: red;">
+              Please enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Message -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Message</mat-label>
+            <textarea matInput rows="5" name="message" ngModel required #message="ngModel"></textarea>
+            <mat-error *ngIf="message.invalid && message.touched" style="color: red;">
+              Message is required
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Submit Button -->
+          <button mat-raised-button type="submit" [disabled]="!contactForm.valid"
+            style="background-color: #e87827; color: aliceblue; border-radius: 5px;">
+            Submit
+          </button>
+
+        </form>
+
+        <!-- Success Message -->
+        <p *ngIf="submitted" class="success-msg">
+          Thank you! Your message has been sent.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+
+
+    <!-- RIGHT CARD : CONTACT DETAILS -->
+    <mat-card class="contact-card">
+
+
+      <mat-card-content class="contact-info">
+
+        <div class="contact-row">
+          <mat-icon>call</mat-icon>
+          <div>
+            <strong>My Phone</strong>
+            <span>+91 9146020952</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <mat-icon>email</mat-icon>
+          <div>
+            <strong>Email</strong>
+            <span>pratibhah033@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <strong>My Location</strong>
+            <span>
+              At Apatgaon beed road chh. Sambhajinagar Maharashtra, India
+            </span>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer" style="background-color: #3f3d3c; color: white;">
+  <div class="footer-content"
+    style="display: flex; justify-content: space-between;padding:10px;padding-left: 100px;padding-right: 100px;">
+    <p>@ Copyright 2024 <strong>Pratibha Hajare</strong> Design & Developement by<a
+        href="https://www.linkedin.com/in/pratibha-h-824914227" target="_blank" style="  text-decoration: none;">
+        Pratibha Hajare
+      </a> </p>
+
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/pratibha-h-824914227" target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/pratibhahajare27" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank">
+        <i class="fa fa-instagram"></i>
+      </a>
+      <a href="https://www.naukri.com/mnjuser/profile" target="_blank">
+        <i class="fa fa-briefcase"></i>
+      </a>
+    </div>
+  </div>
+</footer>
