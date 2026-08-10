@@ -77,9 +77,11 @@
 }
 
 .about-img {
-  width: 250px;
+  width: 200px;
+  height: 250px;
   border-radius: 8px;
-  
+  background-color: #000;
+  object-fit: cover;
 }
 
 /* SERVICES */
