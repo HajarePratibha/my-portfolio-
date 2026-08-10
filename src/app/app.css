@@ -77,11 +77,11 @@
 }
 
 .about-img {
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 50%;
-  background-color: #2f2f2f;
+
+
 }
 
 /* SERVICES */
