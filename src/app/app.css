@@ -77,10 +77,10 @@
 }
 
 .about-img {
-  width: 100px;
-  height: 200px;
-
-  border-radius: 8px;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
   background-color: #2f2f2f;
 }
 
