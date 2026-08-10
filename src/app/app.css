@@ -61,8 +61,8 @@
 }
 
 .hero-img {
-    width: 600px;
-    border-radius: 8px;
+  width: 600px;
+  border-radius: 8px;
 }
 
 /* ABOUT */
@@ -77,9 +77,9 @@
 }
 
 .about-img {
-    width: 250px;
-    border-radius: 8px;
-    background-color: #000;
+  width: 250px;
+  border-radius: 8px;
+  
 }
 
 /* SERVICES */
